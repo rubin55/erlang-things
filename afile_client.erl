@@ -14,3 +14,10 @@ get_file(Server, File) ->
         {Server, Content} ->
             Content
     end.
+
+put_file(Server, File) ->
+    Server ! {self(), {put_file, File}},
+    receive
+        {Server, Content} ->
+            Content
+    end.
